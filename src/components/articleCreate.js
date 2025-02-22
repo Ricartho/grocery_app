@@ -2,12 +2,22 @@ import React,{useState} from "react";
 
 import{Box,TextField,Button} from '@mui/material';
 
-const ArticleCreate = ({onCreate}) =>{
+const ArticleCreate = ({onCreate,onRefresh}) =>{
 
     const [nameValue,setNameValue] = useState('');
     const [priceValue, setpriceValue] = useState('');
     const [qtValue,setQtValue] = useState('');
 
+    const handlePrice = (e) =>{
+        const val = e.target.value;
+        const verif = val.replace(/[^0-9]/g, '');
+        setpriceValue(verif);
+    };
+    const handleQt = (e) =>{
+        const val = e.target.value;
+        const verif = val.replace(/[^0-9]/g, '');
+        setQtValue(verif);
+    };
     const handleSubmit = (e) =>{
         e.preventDefault();
         onCreate(nameValue,priceValue,qtValue);
@@ -16,6 +26,7 @@ const ArticleCreate = ({onCreate}) =>{
         setQtValue('');
         
     };
+   
  return(
    
         <form autoComplete="off" onSubmit={handleSubmit}>
@@ -24,12 +35,12 @@ const ArticleCreate = ({onCreate}) =>{
             marginRight:'5%',
             marginLeft:'1%'
           }}/>
-          <TextField label="Unit Price" variant="standard" type='int' required value={priceValue} onChange={(e) => setpriceValue(e.target.value)}
-          sx={{
-            marginRight:'5%',
-            marginLeft:'1%'
-          }}/>
-          <TextField label="Quantity" variant="standard" type='int' required value={qtValue} onChange={(e) => setQtValue(e.target.value)}
+          <TextField label="Unit Price(numbers only)" variant="standard" type='int' required value={priceValue} onChange={handlePrice}
+            sx={{
+                marginRight:'5%',
+                marginLeft:'1%'
+            }}/>
+          <TextField label="Quantity(numbers only)" variant="standard" type='int' required value={qtValue} onChange={handleQt}
           sx={{
             marginRight:'5%',
             marginLeft:'1%'
@@ -37,9 +48,17 @@ const ArticleCreate = ({onCreate}) =>{
           <Button variant="text" type='submit' color='primary'
           sx={{
             marginLeft:'2%',
+            marginRight:'2%',
           }}> 
             Add 
           </Button>
+           <Button variant="text" color='primary' name="delete" onClick={onRefresh}   sx={{
+            marginLeft:'2%',
+            marginRight:'2%',
+          }}> 
+            Refresh
+            </Button>
+
         </form>
    
  );

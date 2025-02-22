@@ -12,7 +12,16 @@ const EditForm = ({article,onUpdateSubmit,closeEditForm}) => {
     const[newPrice,setNewPrice] = useState(article.article.price);
     const[newQt,setNewQt] = useState(article.article.qt);
 
-
+    const handlePrice = (e) =>{
+        const val = e.target.value;
+        const verif = val.replace(/[^0-9]/g, '');
+        setNewPrice(verif);
+    };
+    const handleQt = (e) =>{
+        const val = e.target.value;
+        const verif = val.replace(/[^0-9]/g, '');
+        setNewQt(verif);
+    };
 const handleSubmit = (e) =>{
     e.preventDefault();
     onUpdateSubmit(article.article.id,newName,newPrice,newQt);
@@ -28,12 +37,12 @@ const handleSubmit = (e) =>{
               </TableCell>
               <TableCell>
                
-                <TextField variant="standard" type='string' value={newPrice} onChange={(e) => setNewPrice(e.target.value)}/>
+                <TextField variant="standard" type='string' value={newPrice} onChange={handlePrice}/>
            
               </TableCell>
               <TableCell>
                
-                <TextField variant="standard" type='string' value={newQt} onChange={(e) => setNewQt(e.target.value)}/>
+                <TextField variant="standard" type='string' value={newQt} onChange={handleQt}/>
             
               </TableCell>
               <TableCell>
