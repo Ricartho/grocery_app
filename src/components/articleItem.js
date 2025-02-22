@@ -6,14 +6,14 @@ import { TableRow, TableCell,Button, Typography} from "@mui/material";
 
 const ArticleItem = ({article,onDelete,onUpdate}) =>{
 console.log('article item test');
-console.log(article.id);
+console.log(article.article.id);
     const [showEdit,setShowEdit] = useState(false);
 
     const handleEditClick = () => {
         setShowEdit(!showEdit);
     };
     const handleDelete = () =>{
-        onDelete(article.id);
+        onDelete(article.article.id);
     };
 
     const handleUpdateSubmit = (id,newName,newPrice,newQt) => {
@@ -26,29 +26,21 @@ console.log(article.id);
     }
 
     let content =
-        <TableRow key={article.id}>
-            <TableCell>{article.name}</TableCell>
-            <TableCell>{article.price}</TableCell>
-            <TableCell>{article.qt}</TableCell>
-            <TableCell>{article.price * article.qt}</TableCell>
+        <TableRow key={article.article.id}>
+            <TableCell>{article.article.name}</TableCell>
+            <TableCell>{article.article.price}</TableCell>
+            <TableCell>{article.article.qt}</TableCell>
+            <TableCell>{article.article.price * article.article.qt}</TableCell>
             <TableCell><Button variant="text" color='primary' name="delete" onClick={handleEditClick}>Edit</Button></TableCell>
             <TableCell><Button variant="text" color='primary' name="delete" onClick={handleDelete}>Delete</Button></TableCell>
        
             </TableRow>
 
-        if(showEdit){content = <EditForm article={article} onUpdateSubmit={handleUpdateSubmit} closeEditForm={closeEditForm}onUpdate={onUpdate}/>}
+        if(showEdit){content = <EditForm article={article} onUpdateSubmit={handleUpdateSubmit} closeEditForm={closeEditForm} />}
 
     return(
             <>{content}</>
-      
-        // <TableRow key={article.id}>
-        //     <TableCell>{article.name}</TableCell>
-        //     <TableCell>{article.price}</TableCell>
-        //     <TableCell>{article.qt}</TableCell>
-        //     <TableCell>{article.price * article.qt}</TableCell>
-        //     <TableCell><Button variant="text" color='primary' name="delete" >Edit</Button></TableCell>
-        //     <TableCell><Button variant="text" color='primary' name="delete" onClick={handleDelete}>Delete</Button></TableCell>
-        // </TableRow>
+
     );
 
 }

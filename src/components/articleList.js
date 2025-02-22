@@ -5,10 +5,10 @@ import { TableContainer,TableHead,TableRow,TableCell, TableBody,Table } from "@m
 
 const ArticleList = ({articles,onDelete,onUpdate}) =>{
     console.log('article list test')
-console.log(articles);
+    console.log(articles);
     const renderedArticles = articles.map(article => (
         // console.log(article.id)
-        <ArticleItem key={article.id} article={article} onDelete={onDelete} onUpdate={onUpdate}/>
+        <ArticleItem key={article.article.id} article={article} onDelete={onDelete} onUpdate={onUpdate}/>
     ));
     return(
         <TableContainer>
