@@ -30,7 +30,7 @@ console.log(article.article.id);
             <TableCell>{article.article.name}</TableCell>
             <TableCell>{article.article.price}</TableCell>
             <TableCell>{article.article.qt}</TableCell>
-            <TableCell>{article.article.price * article.article.qt}</TableCell>
+            <TableCell>{article.article.price * article.article.qt} USD</TableCell>
             <TableCell><Button variant="text" color='primary' name="delete" onClick={handleEditClick}>Edit</Button></TableCell>
             <TableCell><Button variant="text" color='primary' name="delete" onClick={handleDelete}>Delete</Button></TableCell>
        

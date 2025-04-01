@@ -7,7 +7,9 @@ const ArticleCreate = ({onCreate,onRefresh}) =>{
     const [nameValue,setNameValue] = useState('');
     const [priceValue, setpriceValue] = useState('');
     const [qtValue,setQtValue] = useState('');
-
+    const capitalize = (word) =>{
+      return word.charAt(0).toUpperCase() + word.slice(1);
+    };
     const handlePrice = (e) =>{
         const val = e.target.value;
         const verif = val.replace(/[^0-9]/g, '');
@@ -17,6 +19,11 @@ const ArticleCreate = ({onCreate,onRefresh}) =>{
         const val = e.target.value;
         const verif = val.replace(/[^0-9]/g, '');
         setQtValue(verif);
+    };
+    const handleName =(e) =>{
+     const w = e.target.value;
+      const cap = capitalize(w);
+      setNameValue(cap);
     };
     const handleSubmit = (e) =>{
         e.preventDefault();
@@ -30,7 +37,7 @@ const ArticleCreate = ({onCreate,onRefresh}) =>{
  return(
    
         <form autoComplete="off" onSubmit={handleSubmit}>
-          <TextField label="Item Name" variant="standard" type='string' required value={nameValue} onChange={(e) => setNameValue(e.target.value)}
+          <TextField label="Item Name" variant="standard" type='string' required value={nameValue} onChange={handleName}
           sx={{
             marginRight:'5%',
             marginLeft:'1%'
