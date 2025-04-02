@@ -21,7 +21,7 @@ function App() {
 
     //get list of articles from the DB
       const fetchArticles = async() =>{
-      await axios.get('http://localhost:3000/articles')
+      await axios.get(process.env.REACT_APP_BACKEND_URL+'/articles')
                     .then(function(resp){
                       console.log("fetching article from DB");
                       console.log(resp.data);
@@ -42,7 +42,7 @@ function App() {
 
       //save in article in DB
     const createArticle = async(name,price,qt) =>{
-      await axios.post('http://localhost:3000/articles',{name,price,qt})
+      await axios.post(process.env.REACT_APP_BACKEND_URL+'/articles',{name,price,qt})
                   .then(function(resp){
                     const updatedArticles = [...articles,resp.data];
                     setArticles(updatedArticles);
@@ -55,7 +55,7 @@ function App() {
     
       //update article in DB
     const updatedArticleById = async(id,name,price,qt) => {
-      const resp = await axios.put(`http://localhost:3000/articles/${id}`,{name,price,qt});
+      const resp = await axios.put(process.env.REACT_APP_BACKEND_URL+`/articles/${id}`,{name,price,qt});
 
       const updatedArticles = articles.map((article)=>{
         if(article.article.id === id){
@@ -71,7 +71,7 @@ function App() {
 
       //remove article from DB
     const deleteArticleById = async(id) =>{
-      await axios.delete(`http://localhost:3000/articles/${id}`)
+      await axios.delete(process.env.REACT_APP_BACKEND_URL+`/articles/${id}`)
       .then(function(resp){
         const updatedArticles = articles.filter((article)=>{return article.article.id !== id});
         setArticles(updatedArticles);
@@ -84,7 +84,7 @@ function App() {
     //remove all articles at once
 
     const deleteArticles = async() =>{
-      await axios.delete('http://localhost:3000/articles')
+      await axios.delete(process.env.REACT_APP_BACKEND_URL+'/articles')
       .then(function(resp){
         const updatedArticles = articles.filter((article)=>false);
         setArticles(updatedArticles);
