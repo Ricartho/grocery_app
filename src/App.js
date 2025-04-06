@@ -44,7 +44,7 @@ function App() {
     const createArticle = async(name,price,qt) =>{
       await axios.post(process.env.REACT_APP_BACKEND_URL+'/articles',{name,price,qt})
                   .then(function(resp){
-                    const updatedArticles = [...articles,resp.data];
+                    const updatedArticles = [resp.data,...articles];
                     setArticles(updatedArticles);
                     
                   })

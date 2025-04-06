@@ -31,6 +31,7 @@ const ArticleCreate = ({onCreate,onRefresh}) =>{
         setNameValue('');
         setpriceValue('');
         setQtValue('');
+        alert('New item added!');
         
     };
    
@@ -52,17 +53,10 @@ const ArticleCreate = ({onCreate,onRefresh}) =>{
             marginRight:'5%',
             marginLeft:'1%'
           }}/>
-          <Button variant="text" type='submit' color='primary'
-          sx={{
-            marginLeft:'2%',
-            marginRight:'2%',
-          }}> 
+          <Button variant="text" type='submit' color='primary'> 
             Add 
           </Button>
-           <Button variant="text" color='primary' name="delete" onClick={onRefresh}   sx={{
-            marginLeft:'2%',
-            marginRight:'2%',
-          }}> 
+           <Button variant="text" color='primary' name="delete" onClick={onRefresh}    > 
             Refresh
             </Button>
 
